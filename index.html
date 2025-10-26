@@ -1,0 +1,951 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourCake Plug | Custom Cakes & Pastries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --cream: #fef7f0;
+            --light-pink: #fce4ec;
+            --deep-pink: #f8bbd9;
+            --gold: #d4af37;
+            --dark-text: #2d2d2d;
+            --light-text: #f8f4e9;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--deep-pink);
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--deep-pink);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            opacity: 0.8;
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        nav ul li a:hover {
+            color: var(--deep-pink);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(254, 247, 240, 0.9), rgba(254, 247, 240, 0.9)), 
+                        url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1089&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: var(--dark-text);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--deep-pink);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--dark-text);
+            opacity: 0.8;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--deep-pink), var(--gold));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(to right, #25D366, #128C7E);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background-color: var(--light-pink);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-text);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--deep-pink);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 300px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--deep-pink);
+        }
+
+        /* Cookies Section */
+        .cookies {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            color: var(--dark-text);
+        }
+
+        .cookies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .cookie-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .cookie-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cookie-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cookie-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cookie-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--deep-pink);
+        }
+
+        /* Signature Collection */
+        .signature {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .signature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .signature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .signature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--deep-pink);
+        }
+
+        /* Holiday Collection */
+        .holiday {
+            padding: 80px 0;
+            background-color: var(--light-pink);
+            text-align: center;
+        }
+
+        .holiday-banner {
+            background: linear-gradient(135deg, var(--deep-pink) 0%, var(--gold) 100%);
+            padding: 60px 40px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .holiday-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .discount {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--cream);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--deep-pink);
+        }
+
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background: url('New folder/logo your cake.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            color: var(--dark-text);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--deep-pink);
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--deep-pink);
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--cream);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--deep-pink) 0%, var(--light-pink) 100%);
+            color: var(--dark-text);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: var(--dark-text);
+            font-size: 1.5rem;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .social-media-integration {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--dark-text);
+            margin-top: 40px;
+        }
+
+        .social-media-integration h3 {
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .tiktok {
+            background: linear-gradient(45deg, #000000, #25F4EE, #FE2C55);
+        }
+
+        .whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-btn {
+                width: 250px;
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-birthday-cake"></i>
+                    <div>
+                        <h1>Your Cake Plug</h1>
+                        <div class="tagline">indulge in the sweetness</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#products">Cakes</a></li>
+                        <li><a href="#cookies">Cookies</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Your Cake Plug</h2>
+            <div class="subtitle">indulge in the sweetness</div>
+            <p>Your one-stop shop for custom wedding cakes, birthday cakes, cookies, and freshly baked delights. We bring sweetness to your special moments!</p>
+            <a href="#contact" class="btn">Order Now</a>
+            <a href="https://wa.me/256703701413?text=Hi%10YourCake%10Plug!%10I'd%10like%10to%10place%10an%10order." class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp Order
+            </a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Gallery</h2>
+                <p>Browse through our delicious creations and get inspired for your next order</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Add your images here - you can easily add more by copying this structure -->
+                <div class="gallery-item">
+                    <img src="New folder/wedding cake.jpg" alt="Wedding Cake" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Elegant Wedding Cake</h3>
+                        <p>Three-tier masterpiece</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="New folder/birthday cake.jpg" alt="Birthday Cake" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Colorful Birthday Cake</h3>
+                        <p>Perfect for celebrations</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="New folder/cookies.jpg" alt="Cookies" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Delicious Cookies</h3>
+                        <p>Freshly baked daily</p>
+                    </div>
+                </div>
+                <!-- Add more images here by copying the above structure -->
+                <div class="gallery-item">
+                    <img src="New folder/cupcake 1.jpg" alt="Cupcakes" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Assorted Cupcakes</h3>
+                        <p>Perfect for parties</p>
+                    </div>
+                </div>   <div class="gallery-item">
+                    <img src="New folder/buns.jpg" alt="Buns" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Assorted Cupcakes</h3>
+                        <p>Perfect for parties</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="New folder/loaf 2.jpg" alt="Bread" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Freshly Baked Bread</h3>
+                        <p>Artisanal varieties</p>
+                    </div>
+                </div> 
+
+                <div class="gallery-item">
+                    <img src="New folder/cupcake 2.jpg" alt="Cupcakes" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Cupcakes</h3>
+                        <p>Custom designs available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Cake Collection</h2>
+                <p>From elegant wedding cakes to fun birthday creations, we craft delicious cakes for every occasion.</p>
+            </div>
+            <div class="product-grid">
+            <div class="product-card">
+            <div class="product-img" style="background-image:url('New folder/wedding cake 3.jpg');"></div>
+                    <div class="product-info">
+                        <h3>Wedding Cakes</h3>
+                        <p>Elegant, multi-tiered cakes customised to match your your wedding theme and preference.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('New folder/birthday cake 3.jpg');"></div>
+                    <div class="product-info">
+                        <h3>Birthday Cakes</h3>
+                        <p>Fun, creative cakes perfect for celebrating birthdays of all ages.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('New folder/cupcake 2.jpg');"></div>
+                    <div class="product-info">
+                        <h3>Cupcakes</h3>
+                        <p>Delicious cupcakes in various flavors and decorative designs.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('New folder/loaf 2.jpg');"></div>
+                    <div class="product-info">
+                        <h3>Bread</h3>
+                        <p>Freshly baked bread, from classic loaves and buns to artisanal varieties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookies Section -->
+    <section class="cookies" id="cookies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cookie Collection</h2>
+                <p>Delicious, buttery cookies in various flavors and decorative designs.</p>
+            </div>
+            <div class="cookies-grid">
+                <div class="cookie-card">
+                    <div class="cookie-img" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1065&q=80');"></div>
+                    <div class="cookie-info">
+                        <h3>Classic Chocolate Chip</h3>
+                        <p>Our signature chocolate chip cookies with premium chocolate chunks.</p>
+                    </div>
+                </div>
+                <div class="cookie-card">
+                    <div class="cookie-img" style="background-image: url('New folder/cookies.jpg');"></div>
+                    <div class="cookie-info">
+                        <h3>Cookies</h3>
+                        <p>Beautifully decorated cookies perfect for special occasions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Collection -->
+    <section class="signature">
+        <div class="container">
+            <div class="section-title">
+                <h2>Signature Collections</h2>
+                <p>Our most popular curated selections for special occasions</p>
+            </div>
+            <div class="signature-grid">
+                <div class="signature-card">
+                    <h3>Custom Cakes</h3>
+                    <p>Beautifully designed cakes tailored to your specific preferences and occasion.</p>
+                </div>
+                <div class="signature-card">
+                    <h3>Cupcake Collections</h3>
+                    <p>Assorted cupcakes perfect for parties and special events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Holiday Collection -->
+    <section class="holiday">
+        <div class="container">
+            <div class="holiday-banner">
+                <h2>Holiday Packages</h2>
+                <div class="discount">10% OFF</div>
+                <p>Special holiday treats and festive designs</p>
+                <a href="https://wa.me/256703701413?text=Hi%10YourCake%10Plug!%10I'm%10interested%10n%10your%10Holiday%10Collection." class="btn" target="_blank">Order Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Your Cake Plug</h2>
+                    <p>Welcome to Your Cake Plug, your ultimate connection to delicious, custom-made pastries! We're passionate about creating beautiful, tasty treats that make your special moments even more memorable.</p>
+                    <p>Founded with a love for baking, we specialize in custom cakes for weddings, birthdays, and all celebrations. We're here to be your reliable "plug" for all things cake and pastry!</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to order or have questions? Contact us today!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <p>We're an online-based business serving customers with delicious pastries and cakes. Reach out to us through any of the following methods:</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+256 703 701 413</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>natisharifah@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Namugongo - Serving Everywhere</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Business Hours</h3>
+                                <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                                <p>Sunday: 10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="Enter subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="social-media-integration">
+        <div class="container">
+            <h3>Follow Us on Social Media</h3>
+            <div class="social-buttons">
+                <a href="https://instagram.com/yourcakeplug" class="social-btn instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    Follow on Instagram
+                </a>
+                <a href="https://tiktok.com/@yourcakeplug" class="social-btn tiktok" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    Follow on TikTok
+                </a>
+                <a href="https://wa.me/256703701413" class="social-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Message on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-birthday-cake"></i>
+                    <div>
+                        <h1>Your Cake Plug</h1>
+                        <div class="tagline">indulge in the sweetness</div>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://instagram.com/yourcakeplug" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@yourcakeplug" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/256703701413" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Your Cake Plug. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
